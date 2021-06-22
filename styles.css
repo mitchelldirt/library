@@ -12,12 +12,13 @@ main {
   margin-top: 5%;
 }
 
-svg {
+.star {
   width: 20px;
   height: 20px;
-  color: yellow;
+  filter: invert(77%) sepia(79%) saturate(530%) hue-rotate(360deg)
+    brightness(105%) contrast(102%);
   position: relative;
-  bottom: 13px;
+  bottom: 16px;
   left: 130px;
   display: none;
 }
@@ -49,4 +50,5 @@ svg {
   background-color: green;
   text-align: center;
   padding: 1% 0% 5% 0%;
+  margin-bottom: 5%;
 }
