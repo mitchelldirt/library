@@ -15,6 +15,28 @@
         <button id="signInButton">Sign in</button>
     </header>
     <main id="main-div">
+        <center>
+            <button id="addBookButton">Add New Book!</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <form class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Title: <input type="text" name="Title" id="title" required></p>
+                    <p>Author: <input type="text" name="Author" id="author" required></p>
+                    <p>Pages: <input type="number" min="0" name="PageCount" id="pages" required></p>
+                    <p>Language: <input type="text" name="Language" id="language" required></p>
+                    <p>Published: <input type="date" name="PublishingDate" id="published" required></p>
+                    <p>Read? <input type="checkbox" name="hasItBeenRead" id="read" required></p>
+                    <center>
+                        <button id="bookSubmit" type="submit">Add Book</button>
+                    </center>
+                </form>
+
+            </div>
+        </center>
         <div class="book">
             <h2>The Hobbit</h2>
             <p>By: ${book1.author}</p>
