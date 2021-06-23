@@ -36,7 +36,8 @@ submitBook.addEventListener("click", () => {
   const language = document.getElementById("language").value;
   const published = document.getElementById("published").value;
   const hasItBeenRead = document.getElementById("read").value;
-  let book = new Book(title, author, numOfPages, language, published, hasItBeenRead);
+  const backgroundColor = document.getElementById("color").value;
+  let book = new Book(title, author, numOfPages, language, published, hasItBeenRead, backgroundColor);
   addBook(book);
 })
 
@@ -88,6 +89,7 @@ function addBook(obj) {
   bookCard.appendChild(language);
   bookCard.appendChild(published);
   bookCard.appendChild(star);
+  bookCard.style = `background-color: ${obj.backgroundColor}`;
   main.appendChild(bookCard);
   clearInput();
 }
