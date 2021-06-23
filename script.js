@@ -1,5 +1,6 @@
 // This will keep track of the number of books currently being stored.
-let bookNum = 0;
+let library = [];
+let cardCount = document.getElementsByTagName("div").length;
 
 // Get the modal
 const modal = document.getElementById("myModal");
@@ -38,7 +39,7 @@ submitBook.addEventListener("click", () => {
   const hasItBeenRead = document.getElementById("read").value;
   const backgroundColor = document.getElementById("color").value;
   let book = new Book(title, author, numOfPages, language, published, hasItBeenRead, backgroundColor);
-  addBook(book);
+  addBookToLibrary(book);
 })
 
 function clearInput() {
@@ -62,35 +63,47 @@ function Book(title, author, numPages, language, published, hasItBeenRead, backg
   this.backgroundColor = backgroundColor;
 }
 
-let book1 = new Book("The Mudd Bio", "Mitchell Mudd", 60, "English", "June 6, 2021", "green");
-console.log(book1)
+function addBookToLibrary(obj) {
+  library.push(obj);
+  displayLibrary(library, cardCount);
+}
 
-function addBook(obj) {
+function displayLibrary(arr, qty) {
   const main = document.getElementById("main-div");
-  let bookCard = document.createElement("div");
-  bookCard.classList.add("book");
-  let title = document.createElement("h2");
-  let author = document.createElement("p");
-  let numPages = document.createElement("p");
-  let language = document.createElement("p");
-  let published = document.createElement("p");
-  let star = document.createElement("img");
-  title.innerHTML = `${obj.title}`;
-  author.innerHTML = `Written By: ${obj.author}`;
-  numPages.innerHTML = `Number of pages: ${obj.numPages}`;
-  language.innerHTML = `Language: ${obj.language}`;
-  published.innerHTML = `Published: ${obj.published}`;
-  star.src = "./Assets/star.svg";
-  star.alt = "Icon of star. Indicates book has been read.";
-  star.classList.add("star");
-  bookCard.appendChild(title);
-  bookCard.appendChild(author);
-  bookCard.appendChild(numPages);
-  bookCard.appendChild(language);
-  bookCard.appendChild(published);
-  bookCard.appendChild(star);
-  bookCard.style = `background-color: ${obj.backgroundColor}`;
-  main.appendChild(bookCard);
+  for (let i = 0; i < arr.length; i++) {
+    if (qty > 1) {
+      for (let i = 0; i < qty - 1; i++) {
+        arr.shift();
+      }
+    }
+    let bookCard = document.createElement("div");
+    bookCard.classList.add("book");
+    bookCard.id = "book" + i;
+    let title = document.createElement("h2");
+    let author = document.createElement("p");
+    let numPages = document.createElement("p");
+    let language = document.createElement("p");
+    let published = document.createElement("p");
+    let star = document.createElement("img");
+    title.innerHTML = `${arr[i].title}`;
+    author.innerHTML = `Written By: ${arr[i].author}`;
+    numPages.innerHTML = `Number of pages: ${arr[i].numPages}`;
+    language.innerHTML = `Language: ${arr[i].language}`;
+    published.innerHTML = `Published: ${arr[i].published}`;
+    star.src = "./Assets/star.svg";
+    star.alt = "Icon of star. Indicates book has been read.";
+    star.classList.add("star");
+    bookCard.appendChild(title);
+    bookCard.appendChild(author);
+    bookCard.appendChild(numPages);
+    bookCard.appendChild(language);
+    bookCard.appendChild(published);
+    bookCard.appendChild(star);
+    bookCard.style = `background-color: ${arr[i].backgroundColor}`;
+    main.appendChild(bookCard);
+    cardCount += 1;
+  }
+
   clearInput();
 }
 
