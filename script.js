@@ -48,7 +48,6 @@ function clearInput() {
   const numOfPages = document.getElementById("pages").value = "";
   const language = document.getElementById("language").value = "";
   const published = document.getElementById("published").value = "";
-  const hasItBeenRead = document.getElementById("read").click();
   span.click();
 }
 
@@ -84,6 +83,11 @@ function displayLibrary(arr, qty) {
     let numPages = document.createElement("p");
     let language = document.createElement("p");
     let published = document.createElement("p");
+    title.classList.add("responsiveText");
+    author.classList.add("responsiveText");
+    numPages.classList.add("responsiveText");
+    language.classList.add("responsiveText");
+    published.classList.add("responsiveText");
     let star = document.createElement("img");
     title.innerHTML = `${arr[i].title}`;
     author.innerHTML = `Written By: ${arr[i].author}`;
@@ -93,6 +97,10 @@ function displayLibrary(arr, qty) {
     star.src = "./Assets/star.svg";
     star.alt = "Icon of star. Indicates book has been read.";
     star.classList.add("star");
+    star.classList.add("noDisplay");
+    if (`${arr[i].hasItBeenRead}` === "Yes") {
+      star.classList.toggle("noDisplay");
+    }
     bookCard.appendChild(title);
     bookCard.appendChild(author);
     bookCard.appendChild(numPages);

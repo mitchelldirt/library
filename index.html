@@ -30,7 +30,10 @@
                     <p>Language: <input type="text" name="Language" id="language" required></p>
                     <p>Published: <input type="date" name="PublishingDate" id="published" required></p>
                     <p>Book Color: <input type="color" name="background color" id="color" required></p>
-                    <p>Read? <input type="checkbox" name="hasItBeenRead" id="read" required></p>
+                    <p>Read? <select id="read">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select></p>
                     <center>
                         <button id="bookSubmit" type="submit">Add Book</button>
                     </center>
