@@ -17,6 +17,21 @@ main {
   margin-top: 5%;
 }
 
+.deleteButton {
+  width: 25px;
+  height: 25px;
+  /*filter: invert(18%) sepia(79%) saturate(7500%) hue-rotate(355deg) brightness(100%) contrast(118%);*/
+  position: relative;
+  bottom: 16px;
+  right: 135px;
+  background-color: transparent;
+  border: none;
+}
+
+.deleteButton:active {
+  transform: translateY(2px);
+}
+
 .star {
   width: 20px;
   height: 20px;

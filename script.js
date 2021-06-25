@@ -1,6 +1,21 @@
 // This will keep track of the number of books currently being stored.
 let library = [];
 let cardCount = document.getElementsByTagName("div").length;
+function addDeleteFunction() {
+  const main = document.getElementById("main-div");
+  const deleteButton = document.getElementsByClassName("deleteButton");
+  for (let i = 0; i < deleteButton.length; i++) {
+    deleteButton[i].addEventListener("click", () => {
+      let index = parseInt(deleteButton[i].accessKey);
+      library.splice(index, 1);
+      let bookToDelete = document.getElementById("book" + index);
+      main.removeChild(bookToDelete);
+      cardCount -= 1;
+    })
+  }
+}
+
+
 
 // Get the modal
 const modal = document.getElementById("myModal");
@@ -49,6 +64,7 @@ function clearInput() {
   const language = document.getElementById("language").value = "";
   const published = document.getElementById("published").value = "";
   span.click();
+  addDeleteFunction();
 }
 
 
@@ -64,7 +80,8 @@ function Book(title, author, numPages, language, published, hasItBeenRead, backg
 
 function addBookToLibrary(obj) {
   library.push(obj);
-  displayLibrary(library, cardCount);
+  let workLibrary = [...library];
+  displayLibrary(workLibrary, cardCount);
 }
 
 function displayLibrary(arr, qty) {
@@ -77,7 +94,7 @@ function displayLibrary(arr, qty) {
     }
     let bookCard = document.createElement("div");
     bookCard.classList.add("book");
-    bookCard.id = "book" + i;
+    bookCard.id = "book" + (cardCount - 1);
     let title = document.createElement("h2");
     let author = document.createElement("p");
     let numPages = document.createElement("p");
@@ -88,12 +105,12 @@ function displayLibrary(arr, qty) {
     numPages.classList.add("responsiveText");
     language.classList.add("responsiveText");
     published.classList.add("responsiveText");
-    let star = document.createElement("img");
     title.innerHTML = `${arr[i].title}`;
     author.innerHTML = `Written By: ${arr[i].author}`;
     numPages.innerHTML = `Number of pages: ${arr[i].numPages}`;
     language.innerHTML = `Language: ${arr[i].language}`;
     published.innerHTML = `Published: ${arr[i].published}`;
+    let star = document.createElement("img");
     star.src = "./Assets/star.svg";
     star.alt = "Icon of star. Indicates book has been read.";
     star.classList.add("star");
@@ -101,12 +118,20 @@ function displayLibrary(arr, qty) {
     if (`${arr[i].hasItBeenRead}` === "Yes") {
       star.classList.toggle("noDisplay");
     }
+    let deleteButton = document.createElement("button");
+    let xSVG = document.createElement("img");
+    xSVG.src = "./Assets/deleteButton.svg"
+    xSVG.style = "width: 20px; height: 20px";
+    deleteButton.classList.add("deleteButton")
+    deleteButton.accessKey = cardCount - 1;
+    deleteButton.appendChild(xSVG);
     bookCard.appendChild(title);
     bookCard.appendChild(author);
     bookCard.appendChild(numPages);
     bookCard.appendChild(language);
     bookCard.appendChild(published);
     bookCard.appendChild(star);
+    bookCard.appendChild(deleteButton);
     bookCard.style = `background-color: ${arr[i].backgroundColor}`;
     main.appendChild(bookCard);
     cardCount += 1;
