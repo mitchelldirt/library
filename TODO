@@ -1,8 +1,5 @@
 USE THE ODIN PROJECT PAGE: Make an array for your book object to be stored in. Give each book a data attribute
 Add a delete button to remove a book
-*** Maybe not this: Each card needs a separate class (maybe one shared class and one that can change).
-Text color needs to respond to the background color (White on dark background | Black on light background)
-Has it been read star needs to be made functional.
 Make each card editable.
 Format everything with CSS
 Make the page responsive
