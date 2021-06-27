@@ -11,6 +11,7 @@ const published = document.getElementById("published");
 const hasItBeenRead = document.getElementById("read");
 const backgroundColor = document.getElementById("color");
 const main = document.getElementById("main-div");
+let bookCards = document.getElementsByClassName("book");
 
 // Below is the code for the modal. This is used to grab input from the user for the book objects.
 const modal = document.getElementById("myModal");
@@ -103,6 +104,10 @@ function displayLibrary(arr, accessKeyNumber) {
             xSVG.style = "width: 20px; height: 20px";
             deleteButton.classList.add("deleteButton")
             deleteButton.accessKey = accessKeyNumber;
+            // Add the delete functionality to each button
+            deleteButton.addEventListener("click", () => {
+                deleteBookCard(deleteButton.accessKey, bookCards)
+            });
             deleteButton.appendChild(xSVG);
             bookCard.appendChild(title);
             bookCard.appendChild(author);
@@ -127,8 +132,15 @@ function clearInput() {
     language.value = "";
     published.value = "";
     span.click();
-    // possibly remove below function if you do the below comment.
-    addDeleteFunction();
 }
 
-// TODO: Add the function here adding the delete button --delete from the DOM/page and also from the library--
+// Deletes the bookCard that matches the delete buttons accessKey.
+function deleteBookCard(del, book) {
+    for (let i = 0; i < library.length; i++) {
+        if (del === book[i].accessKey) {
+            library.splice(i, 1);
+            main.removeChild(book[i]);
+            return;
+        }
+    }
+}

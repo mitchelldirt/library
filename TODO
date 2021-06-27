@@ -1,7 +1,6 @@
-Add a delete button to remove a book
-Format everything with CSS
-Make the page responsive
+Add a 'read?' button and format the delete button, read button, and star icon.
 
-Maybe?
-Give each book a data attribute??
+Format everything with CSS (make sure you have the read button, delete button, and star icons change color like text)
+
+Make the page responsive
  
