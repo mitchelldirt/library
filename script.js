@@ -1,5 +1,7 @@
 // This will keep track of the number of books currently being stored.
 let library = [];
+
+// You shouldn't need card count... just use the length of library.
 let cardCount = document.getElementsByTagName("div").length;
 function addDeleteFunction() {
   const main = document.getElementById("main-div");
@@ -14,8 +16,6 @@ function addDeleteFunction() {
     })
   }
 }
-
-
 
 // Get the modal
 const modal = document.getElementById("myModal");
@@ -68,15 +68,7 @@ function clearInput() {
 }
 
 
-function Book(title, author, numPages, language, published, hasItBeenRead, backgroundColor) {
-  this.title = title;
-  this.author = author;
-  this.numPages = numPages;
-  this.language = language;
-  this.published = published;
-  this.hasItBeenRead = hasItBeenRead;
-  this.backgroundColor = backgroundColor;
-}
+
 
 function addBookToLibrary(obj) {
   library.push(obj);
@@ -92,6 +84,8 @@ function displayLibrary(arr, qty) {
         arr.shift();
       }
     }
+
+
     let bookCard = document.createElement("div");
     bookCard.classList.add("book");
     bookCard.id = "book" + (cardCount - 1);
