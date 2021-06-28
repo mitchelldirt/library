@@ -77,6 +77,31 @@ function displayLibrary(arr, accessKeyNumber) {
             let numPages = document.createElement("p");
             let language = document.createElement("p");
             let published = document.createElement("p");
+            let interactiveElements = document.createElement("span");
+            let star = document.createElement("img");
+            star.src = "./Assets/star.png";
+            star.alt = "Icon of star. Indicates book has been read.";
+            star.classList.add("star");
+            star.classList.add("noDisplay");
+            star.accessKey = accessKeyNumber;
+            if (`${arr[i].hasItBeenRead}` === "Yes") {
+                star.classList.toggle("noDisplay");
+            }
+            let deleteButton = document.createElement("button");
+            let xSVG = document.createElement("img");
+            xSVG.src = "./Assets/delete-button.png"
+            xSVG.style = "width: 20px; height: 20px";
+            deleteButton.classList.add("deleteButton")
+            deleteButton.accessKey = accessKeyNumber;
+            // Add the delete functionality to each button
+            deleteButton.addEventListener("click", () => {
+                deleteBookCard(deleteButton.accessKey, bookCards)
+            });
+            let readToggle = document.createElement("button");
+            readToggle.classList.add("toggle")
+            let toggleIMG = document.createElement("img");
+            toggleIMG.src = "./Assets/ios-toggle-off.png";
+            readToggle.appendChild(toggleIMG);
             title.classList.add("responsiveText");
             author.classList.add("responsiveText");
             numPages.classList.add("responsiveText");
@@ -87,35 +112,16 @@ function displayLibrary(arr, accessKeyNumber) {
             numPages.innerHTML = `Number of pages: ${arr[i].numPages}`;
             language.innerHTML = `Language: ${arr[i].language}`;
             published.innerHTML = `Published: ${arr[i].published}`;
-            // create a flex box div right here to store the delete button, read button, and star icon. 
-            // Center this on a new line under the
-            let star = document.createElement("img");
-            star.src = "./Assets/star.svg";
-            star.alt = "Icon of star. Indicates book has been read.";
-            star.classList.add("star");
-            star.classList.add("noDisplay");
-            star.accessKey = accessKeyNumber;
-            if (`${arr[i].hasItBeenRead}` === "Yes") {
-                star.classList.toggle("noDisplay");
-            }
-            let deleteButton = document.createElement("button");
-            let xSVG = document.createElement("img");
-            xSVG.src = "./Assets/deleteButton.svg"
-            xSVG.style = "width: 20px; height: 20px";
-            deleteButton.classList.add("deleteButton")
-            deleteButton.accessKey = accessKeyNumber;
-            // Add the delete functionality to each button
-            deleteButton.addEventListener("click", () => {
-                deleteBookCard(deleteButton.accessKey, bookCards)
-            });
             deleteButton.appendChild(xSVG);
+            interactiveElements.appendChild(deleteButton);
+            interactiveElements.appendChild(readToggle);
+            interactiveElements.appendChild(star);
             bookCard.appendChild(title);
             bookCard.appendChild(author);
             bookCard.appendChild(numPages);
             bookCard.appendChild(language);
             bookCard.appendChild(published);
-            bookCard.appendChild(star);
-            bookCard.appendChild(deleteButton);
+            bookCard.appendChild(interactiveElements);
             bookCard.style = `background-color: ${arr[i].backgroundColor}`;
             main.appendChild(bookCard);
             counter += 1;
