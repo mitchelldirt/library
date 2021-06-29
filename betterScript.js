@@ -87,6 +87,7 @@ function displayLibrary(arr, accessKeyNumber) {
             })
             readToggle.classList.add("toggle")
             let toggleIMG = document.createElement("img");
+            readToggle.style = "margin-left: 2%"
             toggleIMG.src = "./Assets/ios-toggle-off.png";
             readToggle.appendChild(toggleIMG);
             let star = document.createElement("img");
@@ -103,7 +104,7 @@ function displayLibrary(arr, accessKeyNumber) {
             let deleteButton = document.createElement("button");
             let xSVG = document.createElement("img");
             xSVG.src = "./Assets/delete-button.png"
-            xSVG.style = "width: 20px; height: 20px";
+            xSVG.style = "width: 20px; height: 20px; background-color: seagreen";
             deleteButton.classList.add("deleteButton")
             deleteButton.accessKey = accessKeyNumber;
             // Add the delete functionality to each button
