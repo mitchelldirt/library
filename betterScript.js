@@ -12,6 +12,8 @@ const hasItBeenRead = document.getElementById("read");
 const backgroundColor = document.getElementById("color");
 const main = document.getElementById("main-div");
 let bookCards = document.getElementsByClassName("book");
+let stars = document.getElementsByClassName("star");
+let toggles = document.getElementsByClassName("toggle");
 
 // Below is the code for the modal. This is used to grab input from the user for the book objects.
 const modal = document.getElementById("myModal");
@@ -78,6 +80,15 @@ function displayLibrary(arr, accessKeyNumber) {
             let language = document.createElement("p");
             let published = document.createElement("p");
             let interactiveElements = document.createElement("span");
+            let readToggle = document.createElement("button");
+            readToggle.accessKey = accessKeyNumber;
+            readToggle.addEventListener("click", () => {
+                changeReadStatus(readToggle, stars, toggleIMG)
+            })
+            readToggle.classList.add("toggle")
+            let toggleIMG = document.createElement("img");
+            toggleIMG.src = "./Assets/ios-toggle-off.png";
+            readToggle.appendChild(toggleIMG);
             let star = document.createElement("img");
             star.src = "./Assets/star.png";
             star.alt = "Icon of star. Indicates book has been read.";
@@ -86,6 +97,8 @@ function displayLibrary(arr, accessKeyNumber) {
             star.accessKey = accessKeyNumber;
             if (`${arr[i].hasItBeenRead}` === "Yes") {
                 star.classList.toggle("noDisplay");
+                toggleIMG.src = "/Assets/ios-toggle-on.png"
+                toggleIMG.classList.toggle("on")
             }
             let deleteButton = document.createElement("button");
             let xSVG = document.createElement("img");
@@ -97,11 +110,6 @@ function displayLibrary(arr, accessKeyNumber) {
             deleteButton.addEventListener("click", () => {
                 deleteBookCard(deleteButton.accessKey, bookCards)
             });
-            let readToggle = document.createElement("button");
-            readToggle.classList.add("toggle")
-            let toggleIMG = document.createElement("img");
-            toggleIMG.src = "./Assets/ios-toggle-off.png";
-            readToggle.appendChild(toggleIMG);
             title.classList.add("responsiveText");
             author.classList.add("responsiveText");
             numPages.classList.add("responsiveText");
@@ -148,5 +156,22 @@ function deleteBookCard(del, book) {
             main.removeChild(book[i]);
             return;
         }
+    }
+}
+
+function changeReadStatus(sliderKey, star, img) {
+    for (let i = 0; i < library.length; i++) {
+        if (sliderKey.accessKey === star[i].accessKey) {
+            star[i].classList.toggle("noDisplay");
+        }
+    }
+    if (img.classList.contains("on")) {
+        img.src = "./Assets/ios-toggle-off.png";
+        img.classList.toggle("on");
+        return;
+    } else {
+        img.src = "./Assets/ios-toggle-on.png";
+        img.classList.toggle("on");
+        return;
     }
 }
