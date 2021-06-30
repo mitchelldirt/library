@@ -99,7 +99,7 @@ function displayLibrary(arr, accessKeyNumber) {
             star.accessKey = accessKeyNumber;
             if (`${arr[i].hasItBeenRead}` === "Yes") {
                 star.classList.toggle("noDisplay");
-                toggleIMG.src = "/Assets/ios-toggle-on.png"
+                toggleIMG.src = "./Assets/ios-toggle-on.png"
                 toggleIMG.classList.toggle("on")
             } else {
                 toggleIMG.src = "./Assets/ios-toggle-off.png"
