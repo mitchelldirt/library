@@ -80,7 +80,8 @@ function displayLibrary(arr, accessKeyNumber) {
             let language = document.createElement("p");
             let published = document.createElement("p");
             let interactiveElements = document.createElement("span");
-            interactiveElements.style = "background-color: tan; display: inline-flex; border-radius: 25px; padding: 5"
+            interactiveElements.style = "background-color: tan; display: inline-flex; border-radius: 25px; padding: 5;\
+            gap: 10px;"
             let readToggle = document.createElement("button");
             readToggle.accessKey = accessKeyNumber;
             readToggle.addEventListener("click", () => {
