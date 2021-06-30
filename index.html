@@ -27,12 +27,18 @@
                 <!-- Modal content -->
                 <form class="modal-content">
                     <span class="close">&times;</span>
-                    <p>Title: <input type="text" name="Title" id="title" required></p>
-                    <p>Author: <input type="text" name="Author" id="author" required></p>
-                    <p>Pages: <input type="number" min="0" name="PageCount" id="pages" required></p>
-                    <p>Language: <input type="text" name="Language" id="language" required></p>
-                    <p>Published: <input type="date" name="PublishingDate" id="published" required></p>
-                    <p>Book Color: <input type="color" name="background color" id="color" required></p>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" required>
+                    <label for="pages">Pages:</label>
+                    <input type="number" id="pages" name="pages" required>
+                    <label for="language">Language:</label>
+                    <input type="text" id="language" name="language" required>
+                    <label for="published">Published:</label>
+                    <input type="date" id="published" name="published" required>
+                    <label for="color">Book Color:</label>
+                    <input type="color" id="color" name="color" required>
                     <p>Read? <select id="read">
                             <option value="No">No</option>
                             <option value="Yes">Yes</option>
