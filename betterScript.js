@@ -101,6 +101,8 @@ function displayLibrary(arr, accessKeyNumber) {
                 star.classList.toggle("noDisplay");
                 toggleIMG.src = "/Assets/ios-toggle-on.png"
                 toggleIMG.classList.toggle("on")
+            } else {
+                toggleIMG.src = "./Assets/ios-toggle-off.png"
             }
             let deleteButton = document.createElement("button");
             let xSVG = document.createElement("img");
