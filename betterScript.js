@@ -81,7 +81,7 @@ function displayLibrary(arr, accessKeyNumber) {
             let published = document.createElement("p");
             let interactiveElements = document.createElement("span");
             interactiveElements.style = "background-color: tan; display: inline-flex; border-radius: 25px; padding: 5;\
-            gap: 10px;"
+            gap: 15px;"
             let readToggle = document.createElement("button");
             readToggle.accessKey = accessKeyNumber;
             readToggle.addEventListener("click", () => {
@@ -108,7 +108,7 @@ function displayLibrary(arr, accessKeyNumber) {
             let deleteButton = document.createElement("button");
             let xSVG = document.createElement("img");
             xSVG.src = "./Assets/delete-button.png"
-            xSVG.style = "width: 20px; height: 20px;"
+            xSVG.style = "width: 20px; height: 20px; !important"
             deleteButton.classList.add("deleteButton")
             deleteButton.accessKey = accessKeyNumber;
             // Add the delete functionality to each button
