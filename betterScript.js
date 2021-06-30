@@ -80,7 +80,7 @@ function displayLibrary(arr, accessKeyNumber) {
             let language = document.createElement("p");
             let published = document.createElement("p");
             let interactiveElements = document.createElement("span");
-            interactiveElements.style = "background-color: tan; display: inline-flex; border-radius: 25px; padding: 5;\
+            interactiveElements.style = "background-color: tan; display: inline-flex; border-radius: 25px; padding: 10;\
             gap: 15px;"
             let readToggle = document.createElement("button");
             readToggle.accessKey = accessKeyNumber;
@@ -89,7 +89,6 @@ function displayLibrary(arr, accessKeyNumber) {
             })
             readToggle.classList.add("toggle")
             let toggleIMG = document.createElement("img");
-            readToggle.style = "margin-left: 2%"
             toggleIMG.src = "./Assets/ios-toggle-off.png";
             readToggle.appendChild(toggleIMG);
             let star = document.createElement("img");
@@ -126,9 +125,9 @@ function displayLibrary(arr, accessKeyNumber) {
             language.innerHTML = `Language: ${arr[i].language}`;
             published.innerHTML = `Published: ${arr[i].published}`;
             deleteButton.appendChild(xSVG);
-            interactiveElements.appendChild(deleteButton);
             interactiveElements.appendChild(readToggle);
             interactiveElements.appendChild(star);
+            interactiveElements.appendChild(deleteButton);
             bookCard.appendChild(title);
             bookCard.appendChild(author);
             bookCard.appendChild(numPages);
