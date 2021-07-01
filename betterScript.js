@@ -57,7 +57,8 @@ function Book(title, author, numPages, language, published, hasItBeenRead, backg
 submitBook.addEventListener("click", () => {
     let book = new Book(title.value, author.value, numOfPages.value, language.value, published.value, hasItBeenRead.value, backgroundColor.value);
     library.push(book);
-    addLibraryToLocalStorage(library);
+    let serializedBook = JSON.stringify(book);
+    addLibraryToLocalStorage("book" + counter, serializedBook);
     displayLibrary(library, counter);
 })
 
@@ -157,6 +158,8 @@ function clearInput() {
 function deleteBookCard(del, book) {
     for (let i = 0; i < library.length; i++) {
         if (del === book[i].accessKey) {
+            let titleValue = "book" + i;
+            localStorage.removeItem(titleValue);
             library.splice(i, 1);
             main.removeChild(book[i]);
             return;
@@ -181,22 +184,33 @@ function changeReadStatus(sliderKey, star, img) {
     }
 }
 
-// TODO: Create an array that lives in here under the name locallibrary. Push each item to this library.
+// TODO: Create an array that lives in here under the name localLibrary. Push each item to this library.
 let localStorage = window.localStorage;
-function addLibraryToLocalStorage(arr) {
-    localStorage.clear();
-    localStorage.setItem("library", arr);
+function addLibraryToLocalStorage(key, value) {
+    localStorage.setItem(key, value);
 }
 
-/*function displayLocalStorage() {
+function displayLocalStorage() {
+    let count = 0;
     try {
-        library = localStorage.getItem("library");
-        displayLibrary(library, counter);
+        for (let i = 0; i < localStorage.length; i++) {
+            let deserializedBook = JSON.parse(localStorage.getItem("book" + count));
+            if (deserializedBook == null) {
+                count++;
+                i--;
+                continue;
+            } else {
+                library.push(deserializedBook);
+                displayLibrary(library, counter);
+                count++;
+            }
+        }
     } catch (error) {
-        console.log("You have been saved from a crash")
+        console.log("You have been saved from a crash :)")
         console.log(error)
         library = [];
+        return;
     }
-}*/
+}
 
 window.addEventListener("load", displayLocalStorage());
