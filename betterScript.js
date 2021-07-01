@@ -57,6 +57,7 @@ function Book(title, author, numPages, language, published, hasItBeenRead, backg
 submitBook.addEventListener("click", () => {
     let book = new Book(title.value, author.value, numOfPages.value, language.value, published.value, hasItBeenRead.value, backgroundColor.value);
     library.push(book);
+    addLibraryToLocalStorage(library);
     displayLibrary(library, counter);
 })
 
@@ -179,3 +180,23 @@ function changeReadStatus(sliderKey, star, img) {
         return;
     }
 }
+
+// TODO: Create an array that lives in here under the name locallibrary. Push each item to this library.
+let localStorage = window.localStorage;
+function addLibraryToLocalStorage(arr) {
+    localStorage.clear();
+    localStorage.setItem("library", arr);
+}
+
+/*function displayLocalStorage() {
+    try {
+        library = localStorage.getItem("library");
+        displayLibrary(library, counter);
+    } catch (error) {
+        console.log("You have been saved from a crash")
+        console.log(error)
+        library = [];
+    }
+}*/
+
+window.addEventListener("load", displayLocalStorage());
