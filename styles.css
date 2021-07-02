@@ -107,6 +107,7 @@ main {
   cursor: pointer;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: nowrap;
 
 }
@@ -116,6 +117,10 @@ main {
   background-color: orange;
   border-radius: 25px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .book {
