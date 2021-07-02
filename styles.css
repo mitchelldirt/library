@@ -102,10 +102,11 @@ main {
   background-color: orange;
   border-radius: 25px;
   height: 30px;
-  width: 70px;
+  width: 90px;
   display: inline;
   cursor: pointer;
   word-wrap: normal;
+  text-align: center;
 }
 
 #addBookButton {
