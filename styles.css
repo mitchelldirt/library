@@ -88,9 +88,10 @@ main {
 #header {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   border-bottom: 2px black solid;
+  width: 100%;
 }
 
 #bookImg {
@@ -106,6 +107,7 @@ main {
   cursor: pointer;
   display: flex;
   justify-content: center;
+  flex-wrap: nowrap;
 
 }
 
