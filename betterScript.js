@@ -62,9 +62,7 @@ submitBook.addEventListener("click", () => {
     displayLibrary(library, counter);
 })
 
-// function 1 to display books (delete all and display all)
-
-// function 2 to display books (if access key exists continue else display the book. --make delete button and the bookCard have the same access key for deletion purposes.)
+// function to display books (if `displayed` equals false then display it else don't display.
 function displayLibrary(arr, accessKeyNumber) {
     for (let i = 0; i < library.length; i++) {
         if (arr[i].displayed === true) {
