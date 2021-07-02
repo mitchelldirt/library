@@ -166,7 +166,8 @@ function deleteBookCard(del, book) {
 }
 
 function changeReadStatus(sliderKey, star, img) {
-    for (let i = 0; i < library.length; i++) {
+    let i = 0;
+    for (i; i < library.length; i++) {
         if (sliderKey.accessKey === star[i].accessKey) {
             star[i].classList.toggle("noDisplay");
         }
@@ -174,10 +175,18 @@ function changeReadStatus(sliderKey, star, img) {
     if (img.classList.contains("on")) {
         img.src = "./Assets/ios-toggle-off.png";
         img.classList.toggle("on");
+        indexPosition = i - 1;
+        library[indexPosition].hasItBeenRead = "No";
+        let serializedBook = JSON.stringify(library[indexPosition]);
+        addLibraryToLocalStorage("book" + indexPosition, serializedBook);
         return;
     } else {
         img.src = "./Assets/ios-toggle-on.png";
         img.classList.toggle("on");
+        indexPosition = i - 1;
+        library[indexPosition].hasItBeenRead = "Yes";
+        let serializedBook = JSON.stringify(library[indexPosition]);
+        addLibraryToLocalStorage("book" + indexPosition, serializedBook);
         return;
     }
 }
