@@ -1,7 +1,7 @@
-Format everything with CSS (make sure you have the read button, delete button, and star icons change color like text)
+Fix bug that doesn't allow indexing first item in the library
+
+Fix bug that doesn't change hasItBeenRead on refresh with local storage
+
+Add google sign in
 
 Make the page responsive
-
-Add sign in option
-
- 

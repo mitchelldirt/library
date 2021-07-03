@@ -1,6 +1,7 @@
 // stores all of the book objects
 let library = [];
 let counter = 0;
+window.addEventListener("load", displayLocalStorage());
 
 // constants used throughout my functions. Globally declared to avoid declaring each time.
 const title = document.getElementById("title");
@@ -142,6 +143,83 @@ function displayLibrary(arr, accessKeyNumber) {
     clearInput();
 }
 
+// This is the same as displayLibrary but removes the displayed check because we know it will show as previously being displayed. This function fires onLoad.
+function displayLocalLibrary(arr, accessKeyNumber) {
+    for (let i = 0; i < library.length; i++) {
+        arr[i].displayed = true;
+        let bookCard = document.createElement("div");
+        bookCard.classList.add("book");
+
+        // giving the bookCard an accessKey to match it to the hasItBeenRead star and the delete button.
+        bookCard.accessKey = accessKeyNumber;
+        let title = document.createElement("h2");
+        let author = document.createElement("p");
+        let numPages = document.createElement("p");
+        let language = document.createElement("p");
+        let published = document.createElement("p");
+        let interactiveElements = document.createElement("span");
+        interactiveElements.style = "background-color: tan; display: inline-flex; border-radius: 25px; padding: 12;\
+            gap: 15px;"
+        let readToggle = document.createElement("button");
+        readToggle.accessKey = accessKeyNumber;
+        readToggle.addEventListener("click", () => {
+            changeReadStatus(readToggle, stars, toggleIMG)
+        })
+        readToggle.classList.add("toggle")
+        let toggleIMG = document.createElement("img");
+        toggleIMG.src = "./Assets/ios-toggle-off.png";
+        readToggle.appendChild(toggleIMG);
+        let star = document.createElement("img");
+        star.src = "./Assets/star.png";
+        star.alt = "Icon of star. Indicates book has been read.";
+        star.classList.add("star");
+        star.classList.add("noDisplay");
+        star.accessKey = accessKeyNumber;
+        if (`${arr[i].hasItBeenRead}` === "Yes") {
+            star.classList.toggle("noDisplay");
+            toggleIMG.src = "./Assets/ios-toggle-on.png"
+            toggleIMG.classList.toggle("on")
+        } else {
+            toggleIMG.src = "./Assets/ios-toggle-off.png"
+        }
+        let deleteButton = document.createElement("button");
+        let xSVG = document.createElement("img");
+        xSVG.src = "./Assets/delete-button.png"
+        xSVG.style = "width: 20px; height: 20px; !important"
+        deleteButton.classList.add("deleteButton")
+        deleteButton.accessKey = accessKeyNumber;
+        // Add the delete functionality to each button
+        deleteButton.addEventListener("click", () => {
+            deleteBookCard(deleteButton.accessKey, bookCards)
+        });
+        title.classList.add("responsiveText");
+        author.classList.add("responsiveText");
+        numPages.classList.add("responsiveText");
+        language.classList.add("responsiveText");
+        published.classList.add("responsiveText");
+        title.innerHTML = `${arr[i].title}`;
+        author.innerHTML = `Written By: ${arr[i].author}`;
+        numPages.innerHTML = `Number of pages: ${arr[i].numPages}`;
+        language.innerHTML = `Language: ${arr[i].language}`;
+        published.innerHTML = `Published: ${arr[i].published}`;
+        deleteButton.appendChild(xSVG);
+        interactiveElements.appendChild(readToggle);
+        interactiveElements.appendChild(star);
+        interactiveElements.appendChild(deleteButton);
+        bookCard.appendChild(title);
+        bookCard.appendChild(author);
+        bookCard.appendChild(numPages);
+        bookCard.appendChild(language);
+        bookCard.appendChild(published);
+        bookCard.appendChild(interactiveElements);
+        bookCard.style = `background-color: ${arr[i].backgroundColor}`;
+        main.appendChild(bookCard);
+        counter += 1;
+    }
+}
+clearInput();
+}
+
 // Clear the input after the submitButton is clicked.
 function clearInput() {
     title.value = "";
@@ -208,9 +286,10 @@ function displayLocalStorage() {
                 continue;
             } else {
                 library.push(deserializedBook);
-                displayLibrary(library, counter);
+                displayLocalLibrary(library, counter);
                 count++;
             }
+            // You may want to put displayLocalLibrary below everything to go last
         }
     } catch (error) {
         console.log("You have been saved from a crash :)")
@@ -220,4 +299,3 @@ function displayLocalStorage() {
     }
 }
 
-window.addEventListener("load", displayLocalStorage());
