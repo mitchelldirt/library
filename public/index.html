@@ -4,15 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
     <title>Library</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC9u4DLttxI9wLAAV8oEBAdlN9FeOhN0oM",
+            authDomain: "read-repository.firebaseapp.com",
+            projectId: "read-repository",
+            storageBucket: "read-repository.appspot.com",
+            messagingSenderId: "732943005079",
+            appId: "1:732943005079:web:13d037b584ae1e20aa00d2"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
 
 <body>
     <header id="header">
         <h1><img id="bookImg" src="./Assets/library_books_black_24dp.svg"
                 alt="Simplistic image of a stack of books">Library</h1>
-        <button id="signInButton">Sign In</button>
+        <button id="signInButton">Sign in</button>
     </header>
     <center>
         <button id="addBookButton">Add New Book!</button>
@@ -52,6 +73,6 @@
     </main>
 </body>
 
-<script src="./betterScript.js"></script>
+<script src="./betterScript.js" defer></script>
 
 </html>

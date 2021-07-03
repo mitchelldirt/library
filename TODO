@@ -1,7 +1,3 @@
-Fix bug that doesn't allow indexing first item in the library
-
-Fix bug that doesn't change hasItBeenRead on refresh with local storage
-
 Add google sign in
 
 Make the page responsive

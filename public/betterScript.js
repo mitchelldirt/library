@@ -1,7 +1,6 @@
 // stores all of the book objects
 let library = [];
 let counter = 0;
-window.addEventListener("load", displayLocalStorage());
 
 // constants used throughout my functions. Globally declared to avoid declaring each time.
 const title = document.getElementById("title");
@@ -144,7 +143,8 @@ function displayLibrary(arr, accessKeyNumber) {
 }
 
 // This is the same as displayLibrary but removes the displayed check because we know it will show as previously being displayed. This function fires onLoad.
-function displayLocalLibrary(arr, accessKeyNumber) {
+function displayLocalLibrary(arr) {
+    accessKeyNumber = 0;
     for (let i = 0; i < library.length; i++) {
         arr[i].displayed = true;
         let bookCard = document.createElement("div");
@@ -214,11 +214,10 @@ function displayLocalLibrary(arr, accessKeyNumber) {
         bookCard.appendChild(interactiveElements);
         bookCard.style = `background-color: ${arr[i].backgroundColor}`;
         main.appendChild(bookCard);
-        counter += 1;
+        accessKeyNumber++;
     }
 }
-clearInput();
-}
+
 
 // Clear the input after the submitButton is clicked.
 function clearInput() {
@@ -234,7 +233,7 @@ function clearInput() {
 function deleteBookCard(del, book) {
     for (let i = 0; i < library.length; i++) {
         if (del === book[i].accessKey) {
-            let titleValue = "book" + i;
+            let titleValue = "book" + book[i].accessKey;
             localStorage.removeItem(titleValue);
             library.splice(i, 1);
             main.removeChild(book[i]);
@@ -248,12 +247,13 @@ function changeReadStatus(sliderKey, star, img) {
     for (i; i < library.length; i++) {
         if (sliderKey.accessKey === star[i].accessKey) {
             star[i].classList.toggle("noDisplay");
+            break;
         }
     }
     if (img.classList.contains("on")) {
         img.src = "./Assets/ios-toggle-off.png";
         img.classList.toggle("on");
-        indexPosition = i - 1;
+        indexPosition = i;
         library[indexPosition].hasItBeenRead = "No";
         let serializedBook = JSON.stringify(library[indexPosition]);
         addLibraryToLocalStorage("book" + indexPosition, serializedBook);
@@ -261,7 +261,7 @@ function changeReadStatus(sliderKey, star, img) {
     } else {
         img.src = "./Assets/ios-toggle-on.png";
         img.classList.toggle("on");
-        indexPosition = i - 1;
+        indexPosition = i;
         library[indexPosition].hasItBeenRead = "Yes";
         let serializedBook = JSON.stringify(library[indexPosition]);
         addLibraryToLocalStorage("book" + indexPosition, serializedBook);
@@ -276,21 +276,22 @@ function addLibraryToLocalStorage(key, value) {
 }
 
 function displayLocalStorage() {
+    let localStorage = window.localStorage;
     let count = 0;
     try {
         for (let i = 0; i < localStorage.length; i++) {
             let deserializedBook = JSON.parse(localStorage.getItem("book" + count));
-            if (deserializedBook == null) {
+            if (deserializedBook == null || deserializedBook == undefined) {
                 count++;
                 i--;
                 continue;
             } else {
                 library.push(deserializedBook);
-                displayLocalLibrary(library, counter);
                 count++;
             }
             // You may want to put displayLocalLibrary below everything to go last
         }
+        displayLocalLibrary(library);
     } catch (error) {
         console.log("You have been saved from a crash :)")
         console.log(error)
@@ -298,4 +299,6 @@ function displayLocalStorage() {
         return;
     }
 }
+
+window.addEventListener("load", displayLocalStorage());
 

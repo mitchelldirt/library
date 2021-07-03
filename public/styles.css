@@ -100,8 +100,8 @@ main {
   margin: 0;
 }
 #signInButton {
-  background-color: orange;
-  border-radius: 25px;
+  background-color: transparent;
+  border-color: transparent;
   height: fit-content;
   width: fit-content;
   cursor: pointer;
