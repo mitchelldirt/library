@@ -33,7 +33,19 @@
     <header id="header">
         <h1><img id="bookImg" src="./Assets/library_books_black_24dp.svg"
                 alt="Simplistic image of a stack of books">Library</h1>
-        <button id="signInButton">Sign in</button>
+                <section id="whenSignedOut">
+
+                    <button id="signInBtn" class="btn btn-primary">Sign in with Google</button>
+                
+                  </section>
+                
+                  <section id="whenSignedIn" hidden="true">
+                
+                    <div id="userDetails"></div>
+                
+                    <button id="signOutBtn" class="btn btn-primary">Sign Out</button>
+                
+                  </section>
     </header>
     <center>
         <button id="addBookButton">Add New Book!</button>
