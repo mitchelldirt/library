@@ -1,6 +1,8 @@
 // stores all of the book objects
 let library = [];
 let counter = 0;
+let dbBook;
+// this will store the book object specifically for firebase.
 
 // constants used throughout my functions. Globally declared to avoid declaring each time.
 const title = document.getElementById("title");
@@ -45,6 +47,38 @@ auth.onAuthStateChanged(user => {
     }
 });
 
+// firebase firestore
+const db = firebase.firestore();
+
+// reference to the database.
+let booksRef;
+
+// unsubscribe prevents memory leaks by stopping the act of listening to the database.
+let unsubscribe;
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+        booksRef = db.collection("books");
+
+        // add book to the database.
+        submitBook.onclick = () => {
+            booksRef.add({
+                uid: user.uid,
+                title: dbBook.title,
+                author: dbBook.author,
+                numOfPages: parseInt(dbBook.numPages),
+                language: dbBook.language,
+                published: dbBook.published,
+                hasItBeenRead: dbBook.hasItBeenRead,
+                backgroundColor: dbBook.backgroundColor,
+                displayed: false,
+            });
+        }
+    }
+}
+);
+
+
 // Below is the code for the modal. This is used to grab input from the user for the book objects.
 const modal = document.getElementById("myModal");
 const btn = document.getElementById("addBookButton");
@@ -87,6 +121,7 @@ function Book(title, author, numPages, language, published, hasItBeenRead, backg
 submitBook.addEventListener("click", () => {
     let book = new Book(title.value, author.value, numOfPages.value, language.value, published.value, hasItBeenRead.value, backgroundColor.value);
     library.push(book);
+    dbBook = book;
     let serializedBook = JSON.stringify(book);
     addLibraryToLocalStorage("book" + counter, serializedBook);
     displayLibrary(library, counter);
