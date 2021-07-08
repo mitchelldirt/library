@@ -66,7 +66,7 @@ auth.onAuthStateChanged(user => {
                 uid: user.uid,
                 title: dbBook.title,
                 author: dbBook.author,
-                numOfPages: parseInt(dbBook.numPages),
+                numOfPages: dbBook.numPages,
                 language: dbBook.language,
                 published: dbBook.published,
                 hasItBeenRead: dbBook.hasItBeenRead,
@@ -86,7 +86,8 @@ auth.onAuthStateChanged(user => {
         });
     }
     else {
-        unsubscribe && unsubscribe();
+        // unsubscribe and reload the page.
+        unsubscribe && unsubscribe() && location.reload(true);
     }
 }
 );
