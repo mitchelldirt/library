@@ -74,6 +74,19 @@ auth.onAuthStateChanged(user => {
                 displayed: false,
             });
         }
+
+        unsubscribe = booksRef
+        .where("uid", "==", user.uid)
+        .onSnapshot(querySnapshot => {
+            const items = querySnapshot.docs.map(doc => {
+                return doc.data();
+            });
+            library = items;
+            displayLocalLibrary(library);
+        });
+    }
+    else {
+        unsubscribe && unsubscribe();
     }
 }
 );
