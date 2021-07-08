@@ -32,6 +32,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 signInBtn.onclick = () => auth.signInWithPopup(provider);
 
 signOutBtn.onclick = () => auth.signOut();
+signOutBtn.onclick = () => location.reload();
 
 auth.onAuthStateChanged(user => {
     if (user) {
@@ -86,8 +87,8 @@ auth.onAuthStateChanged(user => {
         });
     }
     else {
-        // unsubscribe and reload the page.
-        unsubscribe && unsubscribe() && location.reload(true);
+        // unsubscribe.
+        unsubscribe && unsubscribe();
     }
 }
 );
