@@ -2,6 +2,7 @@
 let library = [];
 let counter = 0;
 let dbBook;
+let loggedIn = false
 // this will store the book object specifically for firebase.
 
 // constants used throughout my functions. Globally declared to avoid declaring each time.
@@ -35,6 +36,7 @@ signOutBtn.onclick = () => {auth.signOut()
     location.reload()};
 
 auth.onAuthStateChanged(user => {
+    loggedIn = true;
     if (user) {
         // signed in
         whenSignedIn.hidden = false;
@@ -74,6 +76,18 @@ auth.onAuthStateChanged(user => {
                 backgroundColor: dbBook.backgroundColor,
                 displayed: false,
             });
+        }
+
+        readToggle.onclick = () => {
+            for (let i = 0; i < library.length; i++) {
+                if (booksRef[i] == library[i]) {
+                    if (booksRef[i].hasItBeenRead === "Yes") {
+                        booksRef[i] = "No";
+                    } else {
+                        booksRef[i] = "Yes";
+                    }
+                }
+            }
         }
 
         unsubscribe = booksRef
@@ -356,6 +370,9 @@ function addLibraryToLocalStorage(key, value) {
 }
 
 function displayLocalStorage() {
+    if (loggedIn = true) {
+        return;
+    }
     let localStorage = window.localStorage;
     let count = 0;
     try {
