@@ -84,9 +84,9 @@ auth.onAuthStateChanged(user => {
             for (let i = 0; i < library.length; i++) {
                 if (booksRef[i] == library[i]) {
                     if (booksRef[i].hasItBeenRead === "Yes") {
-                        booksRef[i] = "No";
+                        booksRef[i].hasItBeenRead = "No";
                     } else {
-                        booksRef[i] = "Yes";
+                        booksRef[i].hasItBeenRead = "Yes";
                     }
                 }
             }
