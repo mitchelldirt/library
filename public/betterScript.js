@@ -78,6 +78,8 @@ auth.onAuthStateChanged(user => {
             });
         }
 
+
+        // find a way to update whether a book has been read or not
         const readToggle = document.getElementsByClassName("readToggle");
         readToggle.onclick = () => {
             console.log(this)
