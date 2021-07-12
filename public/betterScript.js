@@ -78,7 +78,9 @@ auth.onAuthStateChanged(user => {
             });
         }
 
+        const readToggle = document.getElementsByClassName("readToggle");
         readToggle.onclick = () => {
+            console.log(this)
             for (let i = 0; i < library.length; i++) {
                 if (booksRef[i] == library[i]) {
                     if (booksRef[i].hasItBeenRead === "Yes") {
@@ -182,6 +184,7 @@ function displayLibrary(arr, accessKeyNumber) {
                 changeReadStatus(readToggle, stars, toggleIMG)
             })
             readToggle.classList.add("toggle")
+            readToggle.classList.add("readToggle");
             let toggleIMG = document.createElement("img");
             toggleIMG.src = "./Assets/ios-toggle-off.png";
             readToggle.appendChild(toggleIMG);
