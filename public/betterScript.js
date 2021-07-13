@@ -18,6 +18,10 @@ let bookCards = document.getElementsByClassName("book");
 let stars = document.getElementsByClassName("star");
 let toggles = document.getElementsByClassName("toggle");
 
+
+/***WILL ADD FIREBASE FUNCTIONALITY IN THE FUTURE. NEED TO CONTINUE LEARNING JS IN "The Odin Project." ***/
+
+/* 
 //firebase Authentication
 const auth = firebase.auth()
 const whenSignedIn = document.getElementById("whenSignedIn");
@@ -110,6 +114,8 @@ auth.onAuthStateChanged(user => {
     }
 }
 );
+
+*/
 
 
 // Below is the code for the modal. This is used to grab input from the user for the book objects.
@@ -375,9 +381,6 @@ function addLibraryToLocalStorage(key, value) {
 }
 
 function displayLocalStorage() {
-    if (loggedIn = true) {
-        return;
-    }
     let localStorage = window.localStorage;
     let count = 0;
     try {
