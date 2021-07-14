@@ -15,7 +15,7 @@ h1 {
 
 label,
 #addBookButton,
-#signInButton, #readSelector, #bookSubmit {
+#signInButton, #readSelector, #bookSubmit, #descriptionText {
   font-family: "Jomhuria", Georgia, "Times New Roman", Times, serif;
   font-size: 1.5em;
 }
