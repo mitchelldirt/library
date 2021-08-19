@@ -144,16 +144,18 @@ window.onclick = function (event) {
     }
 }
 
-// Book object constructor.
-function Book(title, author, numPages, language, published, hasItBeenRead, backgroundColor, displayed) {
-    this.title = title;
-    this.author = author;
-    this.numPages = numPages;
-    this.language = language;
-    this.published = published;
-    this.hasItBeenRead = hasItBeenRead;
-    this.backgroundColor = backgroundColor;
-    this.displayed = false;
+// Updated to class format rather than constructor because it was a small assignment in the odin project
+class Book {
+    constructor(title, author, numPages, language, published, hasItBeenRead, backgroundColor, display) {
+        this.title = title;
+        this.author = author;
+        this.numPages = numPages;
+        this.language = language;
+        this.published = published;
+        this.hasItBeenRead = hasItBeenRead;
+        this.backgroundColor = backgroundColor;
+        this.displayed = false;
+    }
 }
 
 // After pressing the submit button in the modal create a new book object.
